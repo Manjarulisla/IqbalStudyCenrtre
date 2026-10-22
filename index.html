@@ -129,40 +129,38 @@
   <!-- ==========================================================================
        2. TOP NAVIGATION BAR (GLASSMORPHIC & STICKY)
        ========================================================================== -->
-  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/80 backdrop-blur-md border-b border-amber-500/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/90 backdrop-blur-md border-b border-amber-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
       <!-- Brand Logo with Transparent Background Removed Image -->
-      <a href="#home" class="flex items-center gap-3.5 group text-decoration-none">
-        <div class="relative w-12 h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 shadow-md shadow-amber-500/10 group-hover:border-amber-300 transition-colors flex items-center justify-center bg-transparent">
+      <a href="#home" class="flex items-center gap-3.5 group text-decoration-none shrink-0">
+        <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 shadow-md shadow-amber-500/10 group-hover:border-amber-300 transition-colors flex items-center justify-center bg-transparent shrink-0">
           <img src="assets/images/isc-emblem.png" alt="Iqbal Study Centre Logo" class="w-full h-full object-contain">
         </div>
         <div>
-          <div class="font-cinzel font-extrabold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors flex items-center gap-2">
+          <div class="font-cinzel font-bold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors leading-tight whitespace-nowrap">
             IQBAL STUDY CENTRE
-            <span class="text-[9px] font-mono font-normal px-1.5 py-0.5 rounded border border-teal-500/40 text-teal-300 bg-teal-500/10">ISC</span>
           </div>
-          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans flex items-center gap-1.5">
+          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans flex items-center gap-1.5 mt-0.5">
             <span class="font-bengali">ইকবাল চর্চা কেন্দ্র</span>
             <span class="text-slate-500">•</span>
-            <span class="text-slate-400">Dhaka, Bangladesh</span>
+            <span class="text-slate-400 text-[10px]">Dhaka, Bangladesh</span>
           </div>
         </div>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden xl:flex items-center gap-6">
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
         <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
         <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
-        <a href="#events" class="nav-link" data-i18n="navEvents">Events & Evidence</a>
+        <a href="#events" class="nav-link" data-i18n="navEvents">Events</a>
         <a href="#leadership" class="nav-link" data-i18n="navLeadership">Leadership</a>
         <a href="#publications" class="nav-link" data-i18n="navPublications">Publications</a>
-        <a href="#join" class="nav-link" data-i18n="navJoin">Join Us</a>
         <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
       </nav>
 
       <!-- Right Controls: Theme Toggle + Language Switch + Join Us CTA -->
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2.5 sm:gap-3 shrink-0">
         
         <!-- Dark Mode / Light Mode Toggle Button -->
         <button class="theme-toggle-btn p-2 rounded-full bg-slate-900/80 border border-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center" title="Toggle Dark/Light Mode">
@@ -178,20 +176,20 @@
         </div>
 
         <!-- Join Us Action Button -->
-        <a href="#join" class="btn-gold text-xs py-2 px-5">
+        <a href="#join" class="btn-gold text-xs py-2 px-4.5 whitespace-nowrap">
           <span data-i18n="btnJoin">Join Us</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </a>
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
+      <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
     <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu" class="hidden xl:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <button data-lang="en" class="lang-btn px-3 py-1 rounded-full bg-amber-500 text-black font-bold text-xs">EN</button>

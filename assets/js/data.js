@@ -18,9 +18,9 @@ const ISC_DATA = {
   i18n: {
     en: {
       navHome: "Home",
-      navAbout: "About & Philosophy",
-      navEvents: "Activities & Evidence",
-      navLeadership: "Leadership & Council",
+      navAbout: "About",
+      navEvents: "Events",
+      navLeadership: "Leadership",
       navPublications: "Publications",
       navJoin: "Join Us",
       navContact: "Contact",
@@ -99,9 +99,9 @@ const ISC_DATA = {
 
     bn: {
       navHome: "হোম",
-      navAbout: "পরিচিতি ও দর্শন",
-      navEvents: "কার্যক্রম ও দলিল",
-      navLeadership: "সাংগঠনিক পরিষদ",
+      navAbout: "পরিচিতি",
+      navEvents: "কার্যক্রম",
+      navLeadership: "নেতৃত্ব",
       navPublications: "প্রকাশনা",
       navJoin: "যুক্ত হোন",
       navContact: "যোগাযোগ",

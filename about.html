@@ -78,34 +78,34 @@
   </div>
 
   <!-- Header -->
-  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/80 backdrop-blur-md border-b border-amber-500/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3.5 group text-decoration-none">
-        <div class="relative w-12 h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 flex items-center justify-center">
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/90 backdrop-blur-md border-b border-amber-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3.5 group text-decoration-none shrink-0">
+        <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 flex items-center justify-center shrink-0">
           <img src="assets/images/isc-emblem.png" alt="ISC Logo" class="w-full h-full object-contain">
         </div>
         <div>
-          <div class="font-cinzel font-extrabold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors flex items-center gap-2">
+          <div class="font-cinzel font-bold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors leading-tight whitespace-nowrap">
             IQBAL STUDY CENTRE
-            <span class="text-[9px] font-mono font-normal px-1.5 py-0.5 rounded border border-teal-500/40 text-teal-300 bg-teal-500/10">ISC</span>
           </div>
-          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans">
-            ইকবাল চর্চা কেন্দ্র • Dhaka, Bangladesh
+          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans flex items-center gap-1.5 mt-0.5">
+            <span class="font-bengali">ইকবাল চর্চা কেন্দ্র</span>
+            <span class="text-slate-500">•</span>
+            <span class="text-slate-400 text-[10px]">Dhaka, Bangladesh</span>
           </div>
         </div>
       </a>
 
-      <nav class="hidden xl:flex items-center gap-6">
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
         <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
         <a href="about.html" class="nav-link active" data-i18n="navAbout">About</a>
-        <a href="activities.html" class="nav-link" data-i18n="navEvents">Events & Evidence</a>
+        <a href="activities.html" class="nav-link" data-i18n="navEvents">Events</a>
         <a href="leadership.html" class="nav-link" data-i18n="navLeadership">Leadership</a>
         <a href="index.html#publications" class="nav-link" data-i18n="navPublications">Publications</a>
-        <a href="index.html#join" class="nav-link" data-i18n="navJoin">Join Us</a>
         <a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a>
       </nav>
 
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2.5 sm:gap-3 shrink-0">
         <button class="theme-toggle-btn p-2 rounded-full bg-slate-900/80 border border-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center" title="Toggle Theme">
           <span class="theme-toggle-icon"></span>
         </button>
@@ -113,16 +113,16 @@
           <button data-lang="en" class="lang-btn px-2.5 py-1 rounded-full bg-amber-500 text-black font-bold">EN</button>
           <button data-lang="bn" class="lang-btn px-2.5 py-1 rounded-full text-slate-400">বাং</button>
         </div>
-        <a href="index.html#join" class="btn-gold text-xs py-2 px-5" data-i18n="btnJoin">Join Us</a>
+        <a href="index.html#join" class="btn-gold text-xs py-2 px-4.5 whitespace-nowrap" data-i18n="btnJoin">Join Us</a>
       </div>
 
-      <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
+      <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden xl:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <button data-lang="en" class="lang-btn px-3 py-1 rounded-full bg-amber-500 text-black font-bold text-xs">EN</button>
