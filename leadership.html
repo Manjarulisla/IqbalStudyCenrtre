@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership & Councils | Iqbal Study Centre (ISC)</title>
+  <meta name="description" content="Organisational profile of Iqbal Study Centre: Advisory Council, Central Executive Council, and General Members.">
+  
+  <link rel="icon" type="image/png" href="assets/images/isc-emblem.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#040812',
+              navy: '#0a1120',
+              gold: '#d4af37',
+              goldLight: '#fef08a',
+              teal: '#0d9488',
+              tealBright: '#14b8a6',
+              cyan: '#2dd4bf'
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+            playfair: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            bengali: ['Tiro Bangla', 'Noto Sans Bengali', 'system-ui', 'sans-serif'],
+            arabic: ['Amiri', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body class="bg-[#040812] text-slate-100 overflow-x-hidden selection:bg-amber-500 selection:text-black">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-glow-orb"></div>
+    <div class="preloader-emblem-wrap">
+      <div class="preloader-geo-ring"></div>
+      <div class="preloader-geo-ring-reverse"></div>
+      <svg class="preloader-svg-progress" viewBox="0 0 170 170">
+        <circle class="preloader-circle-bg" cx="85" cy="85" r="75"></circle>
+        <circle class="preloader-circle-bar" cx="85" cy="85" r="75"></circle>
+      </svg>
+      <div class="preloader-medallion bg-[#004e5b]">
+        <img src="assets/images/isc-emblem.png" alt="Allama Iqbal Portrait">
+      </div>
+    </div>
+    <div class="preloader-counter"><span id="preloader-counter-text">00</span><span>%</span></div>
+    <div class="text-xs uppercase tracking-[0.25em] text-teal-300 font-cinzel mb-4">Leadership & Council Governance</div>
+    <div class="preloader-quote-container">
+      <p id="preloader-quote" class="preloader-quote-text"></p>
+      <span id="preloader-author" class="preloader-quote-author"></span>
+    </div>
+  </div>
+
+  <canvas id="particles-canvas"></canvas>
+  <div class="custom-cursor-dot"></div>
+  <div class="custom-cursor-outline"></div>
+
+  <!-- Ambient Audio Floating Widget -->
+  <div id="audio-widget" class="floating-audio-widget sound-paused" title="Toggle Ambient Audio">
+    <div class="flex items-center gap-1">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+    <span id="audio-status-text" class="text-xs font-mono text-amber-300">Atmosphere: Ambient Audio</span>
+  </div>
+
+  <!-- Header -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/80 backdrop-blur-md border-b border-amber-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group text-decoration-none">
+        <div class="relative w-12 h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 flex items-center justify-center">
+          <img src="assets/images/isc-emblem.png" alt="ISC Logo" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <div class="font-cinzel font-extrabold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors flex items-center gap-2">
+            IQBAL STUDY CENTRE
+            <span class="text-[9px] font-mono font-normal px-1.5 py-0.5 rounded border border-teal-500/40 text-teal-300 bg-teal-500/10">ISC</span>
+          </div>
+          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans">
+            ইকবাল চর্চা কেন্দ্র • Dhaka, Bangladesh
+          </div>
+        </div>
+      </a>
+
+      <nav class="hidden xl:flex items-center gap-6">
+        <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
+        <a href="about.html" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="activities.html" class="nav-link" data-i18n="navEvents">Events & Evidence</a>
+        <a href="leadership.html" class="nav-link active" data-i18n="navLeadership">Leadership</a>
+        <a href="index.html#publications" class="nav-link" data-i18n="navPublications">Publications</a>
+        <a href="index.html#join" class="nav-link" data-i18n="navJoin">Join Us</a>
+        <a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="hidden sm:flex items-center gap-3">
+        <button class="theme-toggle-btn p-2 rounded-full bg-slate-900/80 border border-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center" title="Toggle Theme">
+          <span class="theme-toggle-icon"></span>
+        </button>
+        <div class="flex items-center bg-slate-900/80 border border-slate-700/80 rounded-full p-0.5 text-xs">
+          <button data-lang="en" class="lang-btn px-2.5 py-1 rounded-full bg-amber-500 text-black font-bold">EN</button>
+          <button data-lang="bn" class="lang-btn px-2.5 py-1 rounded-full text-slate-400">বাং</button>
+        </div>
+        <a href="index.html#join" class="btn-gold text-xs py-2 px-5" data-i18n="btnJoin">Join Us</a>
+      </div>
+
+      <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden xl:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <button data-lang="en" class="lang-btn px-3 py-1 rounded-full bg-amber-500 text-black font-bold text-xs">EN</button>
+          <button data-lang="bn" class="lang-btn px-3 py-1 rounded-full text-slate-400 text-xs">বাংলা</button>
+        </div>
+        <button class="theme-toggle-btn p-2 rounded-full bg-slate-900 border border-slate-700">
+          <span class="theme-toggle-icon"></span>
+        </button>
+      </div>
+      <a href="index.html" class="mobile-nav-link block text-sm font-cinzel text-slate-200" data-i18n="navHome">Home</a>
+      <a href="about.html" class="mobile-nav-link block text-sm font-cinzel text-slate-200" data-i18n="navAbout">About & Philosophy</a>
+      <a href="activities.html" class="mobile-nav-link block text-sm font-cinzel text-slate-200" data-i18n="navEvents">Events & Evidence</a>
+      <a href="leadership.html" class="mobile-nav-link block text-sm font-cinzel text-amber-300" data-i18n="navLeadership">Leadership & Councils</a>
+      <a href="index.html#join" class="mobile-nav-link block text-sm font-cinzel text-amber-300 font-bold" data-i18n="navJoin">Join Us</a>
+      <a href="contact.html" class="mobile-nav-link block text-sm font-cinzel text-slate-200" data-i18n="navContact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="pt-36 pb-16 relative border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal-on-scroll">
+      <span class="gold-badge mb-3" data-i18n="leadershipBadge">Institutional Governance</span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-cinzel text-slate-100 mb-6">
+        Our Organisational <span class="shimmer-text">Profile</span>
+      </h1>
+      <p class="text-slate-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed" data-i18n="leadershipLead">
+        Comprising prominent university faculties, researchers, bankers, artists, and youth activists dedicated to intellectual rigor, cultural programming, and non-partisan inquiry.
+      </p>
+    </div>
+  </section>
+
+  <!-- Leadership Section Container -->
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Filters and Search -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 reveal-on-scroll">
+        <div class="flex flex-wrap gap-2">
+          <button data-category="all" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-amber-400 bg-amber-500 text-black transition-all" data-i18n="filterCouncilAll">
+            All Members
+          </button>
+          <button data-category="advisory" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilAdvisory">
+            Advisory Council (9)
+          </button>
+          <button data-category="executive" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilExecutive">
+            Executive Council (12)
+          </button>
+          <button data-category="members" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilAssembly">
+            General Assembly (26)
+          </button>
+        </div>
+
+        <div class="w-full md:w-72 relative">
+          <input type="text" id="leadership-search" placeholder="Search by name, role or university..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-slate-900/80 border border-slate-700 rounded-full px-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-400">
+          <svg class="w-4 h-4 text-slate-500 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+
+      <!-- Render Grid -->
+      <div id="leadership-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by app.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#02050b] border-t border-amber-500/20 py-12 text-center text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="text-slate-300 font-cinzel text-sm mb-2">Iqbal Study Centre (ইকবাল চর্চা কেন্দ্র) • Dhaka, Bangladesh</p>
+      <p data-i18n="copyright">© 2023–2026. All Rights Reserved. House-4, Road-13, Block-C, Banasree, Dhaka-1219.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+/* ==========================================================================
+   IQBAL STUDY CENTRE (ISC) — HIGH SPEED HARDWARE-ACCELERATED ANIMATIONS
+   Zero render blocking, zero layout thrashing
+   ========================================================================== */
+
+/* Fullscreen Fast Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background-color: #03060d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  will-change: opacity;
+}
+
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Background Atmospheric Glow */
+.preloader-glow-orb {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.22) 0%, rgba(212, 175, 55, 0.12) 50%, transparent 70%);
+  filter: blur(50px);
+  will-change: transform;
+}
+
+/* Center Emblem Container */
+.preloader-emblem-wrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Rotating Geometric Ring */
+.preloader-geo-ring {
+  position: absolute;
+  inset: -12px;
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  animation: spinSlow 20s linear infinite;
+  will-change: transform;
+}
+
+.preloader-geo-ring-reverse {
+  position: absolute;
+  inset: -22px;
+  border: 1px dotted rgba(45, 212, 191, 0.35);
+  border-radius: 50%;
+  animation: spinReverse 25s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Circular SVG Progress */
+.preloader-svg-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  transform: rotate(-90deg);
+}
+
+.preloader-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 4;
+}
+
+.preloader-circle-bar {
+  fill: none;
+  stroke: #d4af37;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 471;
+  stroke-dashoffset: 471;
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+/* Central Medallion */
+.preloader-medallion {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+  border: 2px solid #d4af37;
+  position: relative;
+  z-index: 2;
+}
+
+.preloader-medallion img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Loading Counter */
+.preloader-counter {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fef08a;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.preloader-counter span {
+  font-size: 0.9rem;
+  color: #d4af37;
+}
+
+/* Quotes Carousel in Preloader */
+.preloader-quote-container {
+  max-width: 540px;
+  text-align: center;
+  padding: 0 1rem;
+  min-height: 60px;
+}
+
+.preloader-quote-text {
+  font-family: var(--font-editorial);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.preloader-quote-author {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #d4af37;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* Subtle Shimmer Effect */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #fef08a 35%,
+    #d4af37 60%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 5s linear infinite;
+}
+
+@keyframes textShimmer {
+  to { background-position: 200% center; }
+}
+
+/* Floating Animations (GPU Accelerated) */
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 6s ease-in-out infinite 3s;
+  will-change: transform;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+/* Fast Scroll Reveal */
+.reveal-on-scroll {
+  opacity: 1;
+}

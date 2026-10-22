@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iqbal Study Centre (ISC) | ইকবাল চর্চা কেন্দ্র</title>
+  <meta name="description" content="Official Institutional Portfolio of Iqbal Study Centre (ISC), Dhaka, Bangladesh. Exploring the philosophy of Allama Muhammad Iqbal, youth empowerment, academic research, and civilizational renaissance.">
+  
+  <!-- Favicon using newly generated transparent emblem -->
+  <link rel="icon" type="image/png" href="assets/images/isc-emblem.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#040812',
+              navy: '#0a1120',
+              gold: '#d4af37',
+              goldLight: '#fef08a',
+              teal: '#0d9488',
+              tealBright: '#14b8a6',
+              cyan: '#2dd4bf'
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'Georgia', 'serif'],
+            playfair: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            bengali: ['Tiro Bangla', 'Noto Sans Bengali', 'system-ui', 'sans-serif'],
+            arabic: ['Amiri', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body class="bg-[#040812] text-slate-100 overflow-x-hidden selection:bg-amber-500 selection:text-black">
+
+  <!-- ==========================================================================
+       1. LUXURY MOTION PRELOADER
+       ========================================================================== -->
+  <div id="preloader">
+    <div class="preloader-glow-orb"></div>
+    
+    <div class="preloader-emblem-wrap">
+      <div class="preloader-geo-ring"></div>
+      <div class="preloader-geo-ring-reverse"></div>
+      
+      <!-- SVG Circular Dashoffset Ring -->
+      <svg class="preloader-svg-progress" viewBox="0 0 170 170">
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a" />
+            <stop offset="50%" stop-color="#d4af37" />
+            <stop offset="100%" stop-color="#2dd4bf" />
+          </linearGradient>
+        </defs>
+        <circle class="preloader-circle-bg" cx="85" cy="85" r="75"></circle>
+        <circle class="preloader-circle-bar" cx="85" cy="85" r="75"></circle>
+      </svg>
+
+      <!-- Center Medallion of Allama Iqbal with Transparent Background -->
+      <div class="preloader-medallion bg-[#004e5b]">
+        <img src="assets/images/isc-emblem.png" alt="Allama Iqbal Portrait">
+      </div>
+    </div>
+
+    <!-- Numerical Counter -->
+    <div class="preloader-counter">
+      <span id="preloader-counter-text">00</span><span>%</span>
+    </div>
+
+    <div class="text-xs uppercase tracking-[0.25em] text-teal-300 font-cinzel mb-4">
+      Iqbal Study Centre • Dhaka
+    </div>
+
+    <!-- Dynamic Quotes Carousel -->
+    <div class="preloader-quote-container">
+      <p id="preloader-quote" class="preloader-quote-text"></p>
+      <span id="preloader-author" class="preloader-quote-author"></span>
+    </div>
+  </div>
+
+  <!-- Background Interactive Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Custom Luxury Cursor -->
+  <div class="custom-cursor-dot"></div>
+  <div class="custom-cursor-outline"></div>
+
+  <!-- Ambient Audio Floating Widget -->
+  <div id="audio-widget" class="floating-audio-widget sound-paused" title="Toggle Meditative Ambient Audio">
+    <div class="flex items-center gap-1">
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+      <div class="sound-bar"></div>
+    </div>
+    <span id="audio-status-text" class="text-xs font-mono text-amber-300">Atmosphere: Ambient Audio</span>
+    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+  </div>
+
+  <!-- High-Resolution Image Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-overlay">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-slate-300 hover:text-white bg-black/50 p-2.5 rounded-full border border-slate-700 hover:border-amber-400 transition-colors z-50">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div class="max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+      <div class="relative w-full max-h-[70vh] rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl mb-4 bg-black flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="Enlarged Documented Activity" class="max-w-full max-h-[70vh] object-contain">
+      </div>
+      <div class="text-center w-full px-4">
+        <h4 id="lightbox-title" class="text-xl font-bold font-cinzel text-amber-200 mb-1"></h4>
+        <p id="lightbox-venue" class="text-xs text-teal-400 font-mono mb-2"></p>
+        <p id="lightbox-desc" class="text-xs text-slate-300 max-w-2xl mx-auto leading-relaxed font-sans"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. TOP NAVIGATION BAR (GLASSMORPHIC & STICKY)
+       ========================================================================== -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#040812]/80 backdrop-blur-md border-b border-amber-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo with Transparent Background Removed Image -->
+      <a href="#home" class="flex items-center gap-3.5 group text-decoration-none">
+        <div class="relative w-12 h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 shadow-md shadow-amber-500/10 group-hover:border-amber-300 transition-colors flex items-center justify-center bg-transparent">
+          <img src="assets/images/isc-emblem.png" alt="Iqbal Study Centre Logo" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <div class="font-cinzel font-extrabold text-sm sm:text-base tracking-wider text-slate-100 group-hover:text-amber-200 transition-colors flex items-center gap-2">
+            IQBAL STUDY CENTRE
+            <span class="text-[9px] font-mono font-normal px-1.5 py-0.5 rounded border border-teal-500/40 text-teal-300 bg-teal-500/10">ISC</span>
+          </div>
+          <div class="text-[11px] text-amber-300/80 tracking-wide font-sans flex items-center gap-1.5">
+            <span class="font-bengali">ইকবাল চর্চা কেন্দ্র</span>
+            <span class="text-slate-500">•</span>
+            <span class="text-slate-400">Dhaka, Bangladesh</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center gap-6">
+        <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
+        <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="#events" class="nav-link" data-i18n="navEvents">Events & Evidence</a>
+        <a href="#leadership" class="nav-link" data-i18n="navLeadership">Leadership</a>
+        <a href="#publications" class="nav-link" data-i18n="navPublications">Publications</a>
+        <a href="#join" class="nav-link" data-i18n="navJoin">Join Us</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <!-- Right Controls: Theme Toggle + Language Switch + Join Us CTA -->
+      <div class="hidden sm:flex items-center gap-3">
+        
+        <!-- Dark Mode / Light Mode Toggle Button -->
+        <button class="theme-toggle-btn p-2 rounded-full bg-slate-900/80 border border-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center" title="Toggle Dark/Light Mode">
+          <span class="theme-toggle-icon">
+            <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          </span>
+        </button>
+
+        <!-- Dynamic Language Switcher (EN / বাংলা) -->
+        <div class="flex items-center bg-slate-900/80 border border-slate-700/80 rounded-full p-0.5 text-xs">
+          <button data-lang="en" class="lang-btn px-2.5 py-1 rounded-full bg-amber-500 text-black font-bold transition-all">EN</button>
+          <button data-lang="bn" class="lang-btn px-2.5 py-1 rounded-full text-slate-400 hover:text-slate-200 transition-all">বাং</button>
+        </div>
+
+        <!-- Join Us Action Button -->
+        <a href="#join" class="btn-gold text-xs py-2 px-5">
+          <span data-i18n="btnJoin">Join Us</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden xl:hidden bg-[#040812]/95 border-b border-amber-500/20 backdrop-blur-xl px-6 py-6 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <button data-lang="en" class="lang-btn px-3 py-1 rounded-full bg-amber-500 text-black font-bold text-xs">EN</button>
+          <button data-lang="bn" class="lang-btn px-3 py-1 rounded-full text-slate-400 text-xs">বাংলা</button>
+        </div>
+        <button class="theme-toggle-btn p-2 rounded-full bg-slate-900 border border-slate-700">
+          <span class="theme-toggle-icon"></span>
+        </button>
+      </div>
+      <a href="#home" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navHome">Home</a>
+      <a href="#about" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navAbout">About & Philosophy</a>
+      <a href="#events" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navEvents">Events & Evidence</a>
+      <a href="#leadership" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navLeadership">Leadership & Councils</a>
+      <a href="#publications" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navPublications">Publications & Academy</a>
+      <a href="#join" class="mobile-nav-link block text-sm font-cinzel text-amber-300 font-bold" data-i18n="navJoin">Join Us (Students)</a>
+      <a href="#contact" class="mobile-nav-link block text-sm font-cinzel text-slate-200 hover:text-amber-300" data-i18n="navContact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. HERO SECTION (USING BACKGROUND REMOVED TRANSPARENT LOGO)
+       ========================================================================== -->
+  <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+    <!-- Ambient Radial Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-amber-500/10 via-teal-500/10 to-transparent blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Presentation Content -->
+        <div class="lg:col-span-7 text-center lg:text-left reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 gold-badge mb-6">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span data-i18n="heroBadge">Official Institutional Portfolio</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-cinzel tracking-tight leading-[1.15] mb-6">
+            <span class="text-slate-100" data-i18n="heroTitle1">Awakening</span>
+            <span class="shimmer-text block mt-1" data-i18n="heroTitle2">Khudi & Renaissance</span>
+            <span class="text-xl sm:text-2xl font-light font-playfair italic text-amber-200/90 block mt-2" data-i18n="heroSubtitle">
+              Connecting Iqbal's Timeless Wisdom with Modern Youth Emancipation
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl font-sans leading-relaxed mb-8" data-i18n="heroLead">
+            The Iqbal Study Centre (ইকবাল চর্চা কেন্দ্র) is an independent, non-partisan intellectual and cultural platform headquartered in Dhaka. We bridge Iqbalian dynamic philosophy with 21st-century youth empowerment, critical inquiry, and cultural emancipation across Bangladesh universities.
+          </p>
+
+          <!-- Core Call to Actions -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-12">
+            <a href="#join" class="btn-gold">
+              <span data-i18n="btnJoin">Join Us</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+            </a>
+            <a href="#events" class="btn-outline-gold">
+              <span data-i18n="btnExploreEvents">Explore Events</span>
+              <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            <a href="#about" class="text-xs uppercase font-mono tracking-wider text-slate-400 hover:text-amber-300 transition-colors py-3 px-2 flex items-center gap-1.5">
+              <span data-i18n="btnAboutIqbal">Philosophical Charter</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Ribbon -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80">
+            <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800 text-center lg:text-left">
+              <div class="text-2xl font-bold font-cinzel text-amber-400">2023</div>
+              <div class="text-[11px] uppercase font-mono text-slate-400" data-i18n="statFounded">Founded Year</div>
+            </div>
+            <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800 text-center lg:text-left">
+              <div class="text-2xl font-bold font-cinzel text-teal-300">09</div>
+              <div class="text-[11px] uppercase font-mono text-slate-400" data-i18n="statAdvisory">Advisory Council</div>
+            </div>
+            <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800 text-center lg:text-left">
+              <div class="text-2xl font-bold font-cinzel text-amber-300">12</div>
+              <div class="text-[11px] uppercase font-mono text-slate-400" data-i18n="statExecutive">Executive Portfolios</div>
+            </div>
+            <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800 text-center lg:text-left">
+              <div class="text-2xl font-bold font-cinzel text-cyan-400">26+</div>
+              <div class="text-[11px] uppercase font-mono text-slate-400" data-i18n="statYouth">Campus Fellows</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero: Transparent Logo and Medallion Visual -->
+        <div class="lg:col-span-5 flex justify-center reveal-on-scroll delay-200">
+          <div class="relative w-72 sm:w-88 lg:w-96 aspect-square flex items-center justify-center">
+            
+            <!-- Rotating Cosmic Aura Rings -->
+            <div class="absolute inset-0 border border-amber-500/20 rounded-full animate-spin [animation-duration:35s]"></div>
+            <div class="absolute -inset-6 border border-dashed border-teal-500/25 rounded-full animate-spin [animation-duration:45s] [animation-direction:reverse]"></div>
+            
+            <!-- Transparent Background Removed Logo Display -->
+            <div class="relative w-64 sm:w-72 lg:w-84 aspect-square flex items-center justify-center filter drop-shadow-[0_0_35px_rgba(212,175,55,0.45)] group">
+              <img src="assets/images/isc-logo-full-transparent.png" alt="Iqbal Study Centre Official Logo" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700">
+            </div>
+
+            <!-- Floating Badge Card: Khudi -->
+            <div class="absolute -bottom-4 -left-4 bg-slate-900/90 border border-amber-400/30 backdrop-blur-md p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float-slow">
+              <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold font-cinzel text-slate-100">Khudi (খুদি)</div>
+                <div class="text-[10px] text-amber-300 font-mono">Dormant Divine Potential</div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Card: Bekhudi -->
+            <div class="absolute -top-3 -right-3 bg-slate-900/90 border border-teal-400/30 backdrop-blur-md p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float-delayed">
+              <div class="w-9 h-9 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+              </div>
+              <div>
+                <div class="text-xs font-bold font-cinzel text-slate-100">Bekhudi (বেখুদি)</div>
+                <div class="text-[10px] text-teal-300 font-mono">Collective Community</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. ABOUT & PHILOSOPHICAL CHARTER
+       ========================================================================== -->
+  <section id="about" class="py-24 relative border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+        <span class="gold-badge mb-3" data-i18n="aboutBadge">Institutional Profile</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4" data-i18n="aboutTitle">
+          Executive Summary & Philosophy
+        </h2>
+        <div class="islamic-divider">
+          <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="aboutLead">
+          Founded on the principles of rational inquiry, creative dialogue, and civilizational renaissance, the Center serves as a bridge between Iqbal’s timeless wisdom and contemporary society.
+        </p>
+      </div>
+
+      <!-- Mission vs Vision Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div class="glass-panel p-8 rounded-3xl border-l-4 border-l-amber-400 tilt-card reveal-on-scroll">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold font-cinzel text-amber-300" data-i18n="missionTitle">Our Mission</h3>
+          </div>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4" data-i18n="missionText">
+            To acquaint scholars, students, and the general public with the thought, literature, and philosophy of Allama Iqbal through structured reading circles, university discourse, and creative programming — presenting his immortal literary treasury to a new generation of critical thinkers.
+          </p>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl border-l-4 border-l-teal-400 tilt-card reveal-on-scroll delay-100">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-400/30 flex items-center justify-center text-teal-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold font-cinzel text-teal-300" data-i18n="visionTitle">Our Vision: Transformation to AISCC</h3>
+          </div>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4" data-i18n="visionText">
+            To transform this platform into the Allama Iqbal Study & Cultural Centre (AISCC), fostering a renaissance of Muslim culture, resisting the counter-culture of hegemonic aggression, and building cultural and linguistic bridges between nations while establishing an international research hub in Dhaka.
+          </p>
+        </div>
+      </div>
+
+      <!-- Five Core Epistemological Values -->
+      <div class="reveal-on-scroll">
+        <div class="text-center mb-8">
+          <span class="teal-badge">Foundational Epistemology</span>
+          <h3 class="text-2xl font-bold font-cinzel text-slate-100 mt-2" data-i18n="valuesTitle">The Five Pillars of Iqbalian Thought</h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="glass-panel p-6 rounded-2xl text-center tilt-card">
+            <div class="text-3xl font-arabic text-amber-400 mb-2">علم</div>
+            <h4 class="text-base font-bold font-cinzel text-slate-100 mb-1" data-i18n="val1Title">Ilm (Knowledge)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed font-sans" data-i18n="val1Desc">Rigorous academic engagement with canonical texts in Urdu, Persian, Bengali, and English.</p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl text-center tilt-card">
+            <div class="text-3xl font-arabic text-teal-400 mb-2">عشق</div>
+            <h4 class="text-base font-bold font-cinzel text-slate-100 mb-1" data-i18n="val2Title">Ishq (Devotion)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed font-sans" data-i18n="val2Desc">A burning, selfless love for truth, cosmic justice, and the upliftment of oppressed humanity.</p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl text-center tilt-card">
+            <div class="text-3xl font-arabic text-amber-400 mb-2">اجتهاد</div>
+            <h4 class="text-base font-bold font-cinzel text-slate-100 mb-1" data-i18n="val3Title">Ijtihad (Striving)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed font-sans" data-i18n="val3Desc">Rational, critical, open-minded inquiry — absolute rejection of blind dogmatism and personality cults.</p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl text-center tilt-card">
+            <div class="text-3xl font-arabic text-teal-400 mb-2">جمعية</div>
+            <h4 class="text-base font-bold font-cinzel text-slate-100 mb-1" data-i18n="val4Title">Jam'iat (Inclusivity)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed font-sans" data-i18n="val4Desc">Welcoming scholars and youth across every political, religious, and philosophical persuasion.</p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl text-center tilt-card">
+            <div class="text-3xl font-arabic text-amber-400 mb-2">دوام</div>
+            <h4 class="text-base font-bold font-cinzel text-slate-100 mb-1" data-i18n="val5Title">Dawam (Continuity)</h4>
+            <p class="text-xs text-slate-400 leading-relaxed font-sans" data-i18n="val5Desc">Sustaining civilizational legacy through institutional archives, scholarships, and youth custody.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. DOCUMENTED ACTIVITIES & EVENTS (WITH CATEGORY FILTER & LIGHTBOX)
+       ========================================================================== -->
+  <section id="events" class="py-24 relative bg-slate-950/60 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
+        <span class="gold-badge mb-3" data-i18n="eventsBadge">Documented Track Record</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4" data-i18n="eventsTitle">
+          Documented Events & Evidence
+        </h2>
+        <div class="islamic-divider">
+          <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="eventsLead">
+          Since our founding in 2023, the Centre has systematically mobilized campus reading circles (Halqa), national symposia, translation wings, and open-air cultural assemblies. Click any event image to inspect high-resolution photographic evidence.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-12 reveal-on-scroll">
+        <button data-category="all" class="event-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-amber-400 bg-amber-500 text-black transition-all" data-i18n="filterAll">
+          All Events
+        </button>
+        <button data-category="seminar" class="event-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterSeminars">
+          Seminars & Symposia
+        </button>
+        <button data-category="halqa" class="event-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterHalqa">
+          Study Circles (Halqa)
+        </button>
+        <button data-category="cultural" class="event-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCultural">
+          Cultural & Qawwali Evenings
+        </button>
+        <button data-category="translation" class="event-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterTranslation">
+          Translation & Manuscripts
+        </button>
+      </div>
+
+      <!-- Activities Grid (Rendered dynamically via app.js with real photos) -->
+      <div id="activities-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- Rendered by initEventsRenderer() -->
+      </div>
+
+      <!-- Verified Media Coverage Grid -->
+      <div class="glass-panel p-8 rounded-3xl reveal-on-scroll">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div>
+            <span class="teal-badge mb-2">Verified Media Dispatches</span>
+            <h3 class="text-2xl font-bold font-cinzel text-slate-100">National & International Press Archive</h3>
+          </div>
+          <span class="text-xs text-slate-400 font-mono">Documented in Official Institutional Dossier</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-amber-400 font-bold block mb-2">Daily Naya Diganta</span>
+              <h4 class="text-xs font-semibold text-slate-200 mb-3 leading-snug">"Allama Iqbal is the voice of awakening for the entire Muslim Ummah"</h4>
+            </div>
+            <a href="https://www.dailynayadiganta.com" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 text-xs flex items-center gap-1 font-mono pt-3 border-t border-slate-800">
+              <span data-i18n="viewSource">View News Source</span> ↗
+            </a>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-teal-400 font-bold block mb-2">Sabah News</span>
+              <h4 class="text-xs font-semibold text-slate-200 mb-3 leading-snug">"Iqbal gave consciousness to oppressed nations and courage to resist colonialism"</h4>
+            </div>
+            <a href="https://sabahnews.com" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 text-xs flex items-center gap-1 font-mono pt-3 border-t border-slate-800">
+              <span data-i18n="viewSource">View News Source</span> ↗
+            </a>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-amber-400 font-bold block mb-2">Desh Kal News</span>
+              <h4 class="text-xs font-semibold text-slate-200 mb-3 leading-snug">"Iqbal belongs to all freedom-loving youth across the globe"</h4>
+            </div>
+            <a href="https://deshkal.com" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 text-xs flex items-center gap-1 font-mono pt-3 border-t border-slate-800">
+              <span data-i18n="viewSource">View News Source</span> ↗
+            </a>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-400/40 transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-[11px] font-mono text-cyan-400 font-bold block mb-2">X / Twitter Viral Dispatch</span>
+              <h4 class="text-xs font-semibold text-slate-200 mb-3 leading-snug">"Little girls singing famous poetry of Allama Iqbal at Dhaka University"</h4>
+            </div>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 text-xs flex items-center gap-1 font-mono pt-3 border-t border-slate-800">
+              <span data-i18n="viewSource">View News Source</span> ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. ORGANISATIONAL PROFILE & LEADERSHIP DIRECTORY
+       ========================================================================== -->
+  <section id="leadership" class="py-24 relative border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 reveal-on-scroll">
+        <span class="gold-badge mb-3" data-i18n="leadershipBadge">Organisational Structure</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4" data-i18n="leadershipTitle">
+          Leadership & Assembly
+        </h2>
+        <div class="islamic-divider">
+          <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="leadershipLead">
+          Governed by distinguished professors, psychologists, bankers, and youth scholars from Dhaka University, Jahangirnagar, North South, BUFT, ULAB, and Manarat International University.
+        </p>
+      </div>
+
+      <!-- Controls: Category Filter Tabs & Live Search -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 reveal-on-scroll">
+        <div class="flex flex-wrap gap-2">
+          <button data-category="all" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-amber-400 bg-amber-500 text-black transition-all" data-i18n="filterCouncilAll">
+            All Members
+          </button>
+          <button data-category="advisory" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilAdvisory">
+            Advisory Council (9)
+          </button>
+          <button data-category="executive" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilExecutive">
+            Executive Council (12)
+          </button>
+          <button data-category="members" class="leadership-filter-btn px-4 py-2 rounded-full text-xs font-cinzel font-bold border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-amber-400/50 transition-all" data-i18n="filterCouncilAssembly">
+            General Assembly (26)
+          </button>
+        </div>
+
+        <div class="w-full md:w-72 relative">
+          <input type="text" id="leadership-search" placeholder="Search by name, role or university..." data-i18n-placeholder="searchPlaceholder" class="w-full bg-slate-900/80 border border-slate-700 rounded-full px-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-400">
+          <svg class="w-4 h-4 text-slate-500 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+
+      <!-- Leadership Grid -->
+      <div id="leadership-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by initLeadershipRenderer() -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. PUBLICATIONS & TRANSLATION WING
+       ========================================================================== -->
+  <section id="publications" class="py-24 relative bg-slate-950/60 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+        <span class="gold-badge mb-3">Academic Output</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4">
+          Publications, Translation & Qawwali Academy
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Transforming Iqbal's poetry of Khudi into living artistic expressions: quarterly research journals, translation annotations, classical Sufi Qawwali, and youth recitations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-panel p-8 rounded-3xl tilt-card reveal-on-scroll flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">Quarterly Research Journal</span>
+            <h3 class="text-2xl font-bold font-cinzel text-slate-100 mt-1 mb-3">Iqbaaliyaat (ইকবালিয়াাত)</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              Peer-reviewed academic quarterly journal printing 500 copies per issue. Featuring critical essays, unpublished translations, and thesis chapters on Iqbalian metaphysics and geopolitics.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800 text-xs font-mono text-amber-300 flex items-center justify-between">
+            <span>500 Copies / Issue</span>
+            <span>National Distribution</span>
+          </div>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl tilt-card reveal-on-scroll delay-100 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-400/30 flex items-center justify-center text-teal-300 mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            <span class="text-[10px] font-mono text-teal-400 uppercase tracking-widest">Foundational Translation</span>
+            <h3 class="text-2xl font-bold font-cinzel text-slate-100 mt-1 mb-3">Urdu & Persian to Bengali</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              Direct manuscript translations of <em>Shikwa</em>, <em>Jawab-e-Shikwa</em>, <em>Asrar-i-Khudi</em>, and selected ghazals with verse-by-verse Bengali commentary for students and literary researchers.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800 text-xs font-mono text-teal-300 flex items-center justify-between">
+            <span>Direct Manuscripts</span>
+            <span>Bengali & English</span>
+          </div>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl tilt-card reveal-on-scroll delay-200 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+            </div>
+            <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">Acoustic & Fine Arts Wing</span>
+            <h3 class="text-2xl font-bold font-cinzel text-slate-100 mt-1 mb-3">Qawwali & Drama Academy</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">
+              Regular rehearsals with affiliated artists, musical training with One Empire Band, student recitations, and living dramatic performances communicating human dignity and Khudi.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-800 text-xs font-mono text-amber-300 flex items-center justify-between">
+            <span>Weekly Rehearsals</span>
+            <span>Campus Stage Tours</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. JOIN US (UNIVERSITY STUDENTS & YOUTH FELLOWSHIP PORTAL)
+       ========================================================================== -->
+  <section id="join" class="py-24 relative border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Side: Student Welcome & University Outreach Call -->
+        <div class="lg:col-span-5 reveal-on-scroll">
+          <span class="gold-badge mb-3" data-i18n="joinBadge">University Student Fellowship</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4" data-i18n="joinTitle">
+            Join the Youth Movement
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6 font-sans" data-i18n="joinLead">
+            Are you a student of Dhaka University, Jahangirnagar, NSU, BUET, BUFT, ULAB, Rajshahi, or any university/college in Bangladesh? Awaken your Khudi and join our campus reading circles, research publications, translations, and cultural wings.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <span class="text-amber-400 text-lg">📖</span>
+              <div>
+                <div class="text-xs font-bold text-slate-200">Campus Halqa & Study Circles</div>
+                <div class="text-[11px] text-slate-400">Collaborative reading sessions across university campuses</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <span class="text-teal-400 text-lg">🎭</span>
+              <div>
+                <div class="text-xs font-bold text-slate-200">Performing Arts & Sufi Qawwali</div>
+                <div class="text-[11px] text-slate-400">Stage recitations, theatrical drama, and Qawwali chorals</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+              <span class="text-amber-400 text-lg">✍️</span>
+              <div>
+                <div class="text-xs font-bold text-slate-200">Research & Translation Wing</div>
+                <div class="text-[11px] text-slate-400">Contribute essays to Iqbaaliyaat and translation manuscripts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Student Join Form -->
+        <div class="lg:col-span-7 reveal-on-scroll delay-100">
+          <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-amber-500/30">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-bold font-cinzel text-slate-100">Student Membership Form</h3>
+              <span class="text-[10px] font-mono text-amber-300 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Open for all Universities</span>
+            </div>
+
+            <form id="join-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinFullName">Full Name *</label>
+                  <input type="text" id="join-name" required placeholder="e.g. Arif Hossain" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinUniversity">University / College Name *</label>
+                  <input type="text" id="join-university" required placeholder="e.g. University of Dhaka, JU, NSU..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinDeptBatch">Department & Year / Batch *</label>
+                  <input type="text" required placeholder="e.g. Philosophy, 3rd Year" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinPhone">WhatsApp / Mobile Number *</label>
+                  <input type="tel" required placeholder="017XXXXXXXX" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinEmail">Email Address *</label>
+                  <input type="email" required placeholder="yourname@student.ac.bd" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinInterest">Area of Interest *</label>
+                  <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400">
+                    <option>Study Circles (Halqa) & Philosophy Discourse</option>
+                    <option>Research Writing & Essays for Iqbaaliyaat</option>
+                    <option>Translation Wing (Urdu/Persian to Bengali/English)</option>
+                    <option>Performing Arts: Recitation, Drama & Qawwali</option>
+                    <option>Media, Photography & Digital Content</option>
+                    <option>Campus Organization & Event Logistics</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1" data-i18n="joinReason">Why do you want to join Iqbal Study Centre? *</label>
+                <textarea rows="3" required placeholder="Tell us briefly about your interest in Allama Iqbal's philosophy and what you hope to contribute..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-400"></textarea>
+              </div>
+
+              <button type="submit" class="btn-gold w-full py-3.5 mt-2">
+                <span data-i18n="btnSubmitJoin">Submit Membership Application</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. CONTACT & SECRETARIAT COORDINATES
+       ========================================================================== -->
+  <section id="contact" class="py-24 relative bg-slate-950/60 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+        <span class="gold-badge mb-3" data-i18n="contactBadge">Headquarters & Dialogue</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-cinzel text-slate-100 mb-4" data-i18n="contactTitle">
+          Get in Touch
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="contactLead">
+          Reach out to the Iqbal Study Centre for institutional collaboration, university reading cells, and inquiries.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-panel p-8 rounded-3xl text-center tilt-card">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+          </div>
+          <h4 class="text-sm uppercase font-mono text-amber-400 font-bold mb-2" data-i18n="addressLabel">Headquarters Address</h4>
+          <p class="text-sm text-slate-200 leading-relaxed font-sans">
+            House-4, Road-13, Block-C, Banasree, Dhaka-1219, Bangladesh
+          </p>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl text-center tilt-card">
+          <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-400/30 flex items-center justify-center text-teal-300 mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </div>
+          <h4 class="text-sm uppercase font-mono text-teal-300 font-bold mb-2" data-i18n="emailLabel">Official Correspondence</h4>
+          <p class="text-sm text-slate-200 font-mono">
+            contact@iqbalstudycentre.org<br>isc.dhaka@gmail.com
+          </p>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl text-center tilt-card">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h4 class="text-sm uppercase font-mono text-amber-400 font-bold mb-2" data-i18n="phoneLabel">Campus Halqa Venues</h4>
+          <p class="text-sm text-slate-200 leading-relaxed font-sans">
+            Curzon Hall & DUCSU, University of Dhaka<br>Monthly Weekend Evenings
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. ROYAL FOOTER
+       ========================================================================== -->
+  <footer class="bg-[#02050b] border-t border-amber-500/20 pt-16 pb-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+        
+        <!-- Column 1: Brand & Transparent Medallion -->
+        <div class="lg:col-span-6">
+          <div class="flex items-center gap-3.5 mb-4">
+            <div class="w-12 h-12 rounded-full overflow-hidden border border-amber-400/50 p-0.5 flex items-center justify-center">
+              <img src="assets/images/isc-emblem.png" alt="ISC Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <div class="font-cinzel font-extrabold text-base tracking-wider text-slate-100">
+                IQBAL STUDY CENTRE
+              </div>
+              <div class="text-xs text-amber-300/80 font-sans">
+                ইকবাল চর্চা কেন্দ্র • Est. 2023 • Dhaka
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-md mb-4">
+            Non-partisan intellectual and cultural platform dedicated to the scholarly exploration of Allama Dr. Sir Muhammad Iqbal — visionary poet, philosopher, and spiritual luminary.
+          </p>
+          <div class="text-[11px] font-mono text-teal-400">
+            House-4, Road-13, Block-C, Banasree, Dhaka-1219, Bangladesh
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div class="lg:col-span-3">
+          <h4 class="text-xs font-bold font-cinzel uppercase tracking-widest text-amber-300 mb-4">
+            Navigation
+          </h4>
+          <ul class="space-y-2 text-xs font-sans text-slate-400">
+            <li><a href="#about" class="hover:text-amber-300 transition-colors" data-i18n="navAbout">About & Philosophy</a></li>
+            <li><a href="#events" class="hover:text-amber-300 transition-colors" data-i18n="navEvents">Documented Events</a></li>
+            <li><a href="#leadership" class="hover:text-amber-300 transition-colors" data-i18n="navLeadership">Leadership & Councils</a></li>
+            <li><a href="#publications" class="hover:text-amber-300 transition-colors" data-i18n="navPublications">Publications & Academy</a></li>
+            <li><a href="#join" class="hover:text-amber-300 transition-colors font-bold text-amber-400" data-i18n="navJoin">Join Us (Students)</a></li>
+            <li><a href="#contact" class="hover:text-amber-300 transition-colors" data-i18n="navContact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quote & Future Vision -->
+        <div class="lg:col-span-3">
+          <h4 class="text-xs font-bold font-cinzel uppercase tracking-widest text-teal-300 mb-4">
+            Philosophy of Khudi
+          </h4>
+          <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800 text-[11px] text-amber-200/90 italic font-playfair leading-relaxed">
+            "Elevate your Selfhood so high that before each decree of fate, God Himself asks you: What is your will?"
+          </div>
+          <div class="mt-3 text-[10px] text-slate-500 font-mono">
+            Allama Iqbal • Bal-i-Jibril (1935)
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-4">
+        <div data-i18n="copyright">
+          © 2023–2026 Iqbal Study Centre (ISC). All Rights Reserved.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#home" class="hover:text-amber-300 transition-colors">Back to Top ↑</a>
+          <span>•</span>
+          <span>Dhaka, Bangladesh</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Application Logic & Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>
