@@ -369,7 +369,7 @@ body.light-mode #lightbox-desc {
 
 /* 10. Particles subtle opacity in light mode */
 body.light-mode #particles-canvas {
-  opacity: 0.28 !important;
+  opacity: 0.85 !important;
 }
 
 /* 11. Custom Luxury Cursor in Light Mode */
@@ -464,17 +464,111 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover { background: #fef08a; }
 
-/* Lightweight Background Canvas */
+/* ==========================================================================
+   LIVING THEMATIC BACKGROUND MOTION SYSTEM
+   Continuous ethereal cosmic auroras + interactive celestial particles
+   ========================================================================== */
+.live-ambient-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.aurora-orb-1 {
+  top: -15%;
+  left: -10%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 850px;
+  max-height: 850px;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.16) 0%, rgba(180, 83, 9, 0.06) 45%, transparent 70%);
+  filter: blur(80px);
+  animation: auroraMotion1 26s ease-in-out infinite alternate;
+}
+
+.aurora-orb-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle at center, rgba(13, 148, 136, 0.18) 0%, rgba(20, 184, 166, 0.07) 50%, transparent 70%);
+  filter: blur(90px);
+  animation: auroraMotion2 32s ease-in-out infinite alternate;
+}
+
+.aurora-orb-3 {
+  top: 35%;
+  left: 30%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle at center, rgba(45, 212, 191, 0.10) 0%, rgba(212, 175, 55, 0.06) 50%, transparent 70%);
+  filter: blur(85px);
+  animation: auroraMotion3 22s ease-in-out infinite alternate;
+}
+
+/* Light Mode Aurora Colors */
+body.light-mode .aurora-orb-1 {
+  background: radial-gradient(circle at center, rgba(254, 240, 138, 0.45) 0%, rgba(251, 191, 36, 0.18) 45%, transparent 70%) !important;
+  filter: blur(100px);
+}
+body.light-mode .aurora-orb-2 {
+  background: radial-gradient(circle at center, rgba(204, 251, 241, 0.5) 0%, rgba(45, 212, 191, 0.16) 50%, transparent 70%) !important;
+  filter: blur(110px);
+}
+body.light-mode .aurora-orb-3 {
+  background: radial-gradient(circle at center, rgba(254, 215, 170, 0.35) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 70%) !important;
+  filter: blur(95px);
+}
+
+@keyframes auroraMotion1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8vw, 10vh, 0) scale(1.12); }
+  100% { transform: translate3d(-6vw, 5vh, 0) scale(0.96); }
+}
+
+@keyframes auroraMotion2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-10vw, -12vh, 0) scale(1.14); }
+  100% { transform: translate3d(5vw, -6vh, 0) scale(0.94); }
+}
+
+@keyframes auroraMotion3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(6vw, -8vh, 0) scale(1.08); }
+  100% { transform: translate3d(-8vw, 9vh, 0) scale(0.97); }
+}
+
+/* Celestial Motion Canvas */
 #particles-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.9;
   will-change: transform;
+}
+
+body.light-mode #particles-canvas {
+  opacity: 0.85 !important;
 }
 
 /* Typography Utilities */
