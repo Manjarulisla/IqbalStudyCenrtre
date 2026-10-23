@@ -352,22 +352,6 @@ body.light-mode .quote-box p {
   color: #92400e !important;
 }
 
-/* 8. Floating Atmosphere Audio Widget */
-body.light-mode #audio-widget {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
-}
-body.light-mode #audio-widget #audio-status-text {
-  color: #92400e !important;
-  font-weight: 600;
-}
-body.light-mode #audio-widget .sound-bar {
-  background-color: #b45309 !important;
-}
-body.light-mode #audio-widget svg {
-  color: #b45309 !important;
-}
 
 /* 9. Lightbox Modal Text Clarity (overlay stays cinema dark) */
 body.light-mode #lightbox-modal {
@@ -761,49 +745,6 @@ body:hover .custom-cursor-outline.hovered {
   opacity: 1;
 }
 
-/* Audio Player Floating Widget */
-.floating-audio-widget {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 999;
-  background: var(--bg-card);
-  border: 1px solid var(--border-gold);
-  border-radius: 9999px;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.floating-audio-widget:hover {
-  transform: translateY(-2px);
-  border-color: #fef08a;
-}
-
-.sound-bar {
-  width: 3px;
-  height: 13px;
-  background-color: var(--gold-primary);
-  border-radius: 2px;
-  animation: soundBar 1.2s infinite ease-in-out;
-}
-.sound-bar:nth-child(2) { animation-delay: 0.2s; height: 18px; }
-.sound-bar:nth-child(3) { animation-delay: 0.4s; height: 15px; }
-.sound-bar:nth-child(4) { animation-delay: 0.1s; height: 11px; }
-
-@keyframes soundBar {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(1); }
-}
-
-.sound-paused .sound-bar {
-  animation-play-state: paused;
-  transform: scaleY(0.3);
-}
 
 /* Quote Box */
 .quote-box {

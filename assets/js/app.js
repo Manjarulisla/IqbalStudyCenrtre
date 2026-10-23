@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLanguage();
   initFastCursor();
-  initAmbientAudio();
   initNavbarScroll();
   initMobileMenu();
   initLightbox();
@@ -153,69 +152,7 @@ function initFastCursor() {
 }
 
 /* ==========================================================================
-   4. LIGHTWEIGHT AMBIENT AUDIO SYNTHESIZER
-   ========================================================================== */
-let audioCtx = null;
-let isAudioPlaying = false;
-let oscillators = [];
-let masterGain = null;
-
-function initAmbientAudio() {
-  const widget = document.getElementById('audio-widget');
-  const widgetText = document.getElementById('audio-status-text');
-  if (!widget) return;
-
-  widget.addEventListener('click', () => {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-    }
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    if (isAudioPlaying) {
-      if (masterGain) {
-        masterGain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-        setTimeout(() => {
-          oscillators.forEach(o => o.stop());
-          oscillators = [];
-        }, 800);
-      }
-      widget.classList.add('sound-paused');
-      if (widgetText) widgetText.textContent = window.currentLang === 'bn' ? "অ্যাম্বিয়েন্ট সাউন্ড: বন্ধ" : "Atmosphere: Paused";
-      isAudioPlaying = false;
-    } else {
-      masterGain = audioCtx.createGain();
-      masterGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      masterGain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.5);
-      masterGain.connect(audioCtx.destination);
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(400, audioCtx.currentTime);
-      filter.connect(masterGain);
-
-      const frequencies = [73.42, 110.0, 146.83, 220.0];
-      oscillators = frequencies.map((freq, idx) => {
-        const osc = audioCtx.createOscillator();
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        const oscGain = audioCtx.createGain();
-        oscGain.gain.setValueAtTime(0.15 / frequencies.length, audioCtx.currentTime);
-        osc.connect(oscGain);
-        oscGain.connect(filter);
-        osc.start();
-        return osc;
-      });
-
-      widget.classList.remove('sound-paused');
-      if (widgetText) widgetText.textContent = window.currentLang === 'bn' ? "সুফি মেডিটেশন অডিও চলমান" : "Atmosphere: Meditative Drone";
-      isAudioPlaying = true;
-    }
-  });
-}
-
-/* ==========================================================================
-   5. NAVBAR & MOBILE MENU
+   4. NAVBAR & MOBILE MENU
    ========================================================================== */
 function initNavbarScroll() {
   const header = document.getElementById('main-header');
