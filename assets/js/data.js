@@ -435,7 +435,7 @@ const ISC_DATA = {
       { id: 8, nameEn: "Md. Mazharul Islam", nameBn: "মো. মাজহারুল ইসলাম", roleEn: "Education Secretary", roleBn: "শিক্ষা সম্পাদক", affiliationEn: "Vice Principal, Iranian International School", affiliationBn: "ভাইস প্রিন্সিপাল, ইরানি ইন্টারন্যাশনাল স্কুল" },
       { id: 9, nameEn: "Sakib", nameBn: "সাকিব", roleEn: "Event Manager", roleBn: "ইভেন্ট ম্যানেজার", affiliationEn: "Student, Dept. of Philosophy, University of Dhaka", affiliationBn: "শিক্ষার্থী, দর্শন বিভাগ, ঢাকা বিশ্ববিদ্যালয়" },
       { id: 10, nameEn: "Shahriar Rahman", nameBn: "শাহরিয়ার রহমান", roleEn: "Media Secretary", roleBn: "মিডিয়া সম্পাদক", affiliationEn: "Student, Dept. of Anthropology, University of Dhaka", affiliationBn: "শিক্ষার্থী, নৃবিজ্ঞান বিভাগ, ঢাকা বিশ্ববিদ্যালয়" },
-      { id: 11, nameEn: "Asif Mahmud", nameBn: "আসিফ মাহমুদ", roleEn: "Library Secretary", roleBn: "লাইব্রেরি সম্পাদক", affiliationEn: "Student, Dept. of Journalism, ULAB", affiliationBn: "শিক্ষার্থী, সাংবাদিকতা বিভাগ, ইউল্যাব" },
+      { id: 11, nameEn: "Asif Mahamud", nameBn: "আসিফ মাহামুদ", roleEn: "Library Secretary", roleBn: "লাইব্রেরি সম্পাদক", affiliationEn: "Dept. of Media Studies & Journalism, ULAB", affiliationBn: "মিডিয়া স্টাডিজ অ্যান্ড জার্নালিজম বিভাগ, ইউল্যাব" },
       { id: 12, nameEn: "Mohammad Al-Amin", nameBn: "মোহাম্মদ আল-আমিন", roleEn: "Cultural Secretary", roleBn: "সাংস্কৃতিক সম্পাদক", affiliationEn: "Founder, One Empire Band", affiliationBn: "প্রতিষ্ঠাতা, ওয়ান এম্পায়ার ব্যান্ড" }
     ],
 
