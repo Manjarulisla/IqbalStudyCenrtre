@@ -40,8 +40,10 @@
 }
 
 /* ==========================================================================
-   LIGHT MODE THEME OVERRIDES
+   LIGHT MODE THEME OVERRIDES (ROYAL IVORY & IMPERIAL GOLD THEME)
+   High-contrast, elegant, museum-grade typography and crisp readability
    ========================================================================== */
+html.light-mode body,
 body.light-mode {
   --bg-primary: #f8fafc;
   --bg-surface: #ffffff;
@@ -51,20 +53,20 @@ body.light-mode {
 
   --gold-primary: #b45309;
   --gold-light: #d97706;
-  --gold-champagne: #92400e;
+  --gold-champagne: #78350f;
   --gold-glow: rgba(180, 83, 9, 0.15);
 
   --teal-primary: #0f766e;
   --teal-bright: #0d9488;
-  --teal-cyan: #0284c7;
+  --teal-cyan: #0369a1;
 
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #64748b;
 
-  --border-subtle: rgba(15, 118, 110, 0.18);
+  --border-subtle: #e2e8f0;
   --border-gold: rgba(180, 83, 9, 0.35);
-  --border-card: rgba(15, 23, 42, 0.08);
+  --border-card: #e2e8f0;
 
   --header-bg: rgba(255, 255, 255, 0.96);
 
@@ -72,75 +74,376 @@ body.light-mode {
   color: #0f172a !important;
 }
 
-body.light-mode .glass-panel {
-  background-color: var(--bg-card);
-  border-color: var(--border-card);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+/* 1. Global Light Mode Text Contrast & Readability */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6 {
+  color: #0f172a !important;
 }
 
-body.light-mode .glass-panel:hover {
-  border-color: var(--border-gold);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+body.light-mode p {
+  color: #334155;
 }
 
+/* Base text overrides */
 body.light-mode .text-slate-100 { color: #0f172a !important; }
 body.light-mode .text-slate-200 { color: #1e293b !important; }
 body.light-mode .text-slate-300 { color: #334155 !important; }
-body.light-mode .text-slate-400 { color: #64748b !important; }
-body.light-mode .text-slate-500 { color: #94a3b8 !important; }
+body.light-mode .text-slate-400 { color: #475569 !important; }
+body.light-mode .text-slate-500 { color: #64748b !important; }
 
-body.light-mode .bg-slate-900,
-body.light-mode .bg-slate-900\/50,
-body.light-mode .bg-slate-900\/60,
-body.light-mode .bg-slate-900\/80,
-body.light-mode .bg-slate-950\/60 {
-  background-color: #f1f5f9 !important;
+/* Catch-all for Tailwind opacity-slashed and responsive classes */
+body.light-mode [class*="text-slate-100"] { color: #0f172a !important; }
+body.light-mode [class*="text-slate-200"] { color: #1e293b !important; }
+body.light-mode [class*="text-slate-300"] { color: #334155 !important; }
+body.light-mode [class*="text-slate-400"] { color: #475569 !important; }
+body.light-mode [class*="text-slate-500"] { color: #64748b !important; }
+
+/* Amber & Gold Colors - high contrast on light background */
+body.light-mode [class*="text-amber-200"],
+body.light-mode [class*="text-amber-300"],
+body.light-mode [class*="text-amber-400"] {
+  color: #b45309 !important; /* rich, readable amber-700 */
+}
+body.light-mode [class*="text-amber-500"] {
+  color: #92400e !important;
 }
 
-body.light-mode .border-slate-800,
-body.light-mode .border-slate-800\/80,
-body.light-mode .border-slate-700 {
-  border-color: #cbd5e1 !important;
+/* Teal & Cyan Colors - high contrast on light background */
+body.light-mode [class*="text-teal-200"],
+body.light-mode [class*="text-teal-300"],
+body.light-mode [class*="text-teal-400"] {
+  color: #0f766e !important; /* deep emerald teal-700 */
+}
+body.light-mode [class*="text-cyan-400"] {
+  color: #0369a1 !important; /* rich sky-700 */
+}
+
+/* Shimmer Headline Text in Light Mode */
+body.light-mode .shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #0f172a 0%,
+    #b45309 35%,
+    #0f766e 65%,
+    #0f172a 100%
+  ) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 body.light-mode .text-gold-gradient {
-  background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
-body.light-mode .text-amber-200,
-body.light-mode .text-amber-300 {
+body.light-mode .text-teal-gradient {
+  background: linear-gradient(135deg, #134e4a 0%, #0f766e 50%, #0369a1 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 2. Panels, Cards, & Section Backgrounds */
+body.light-mode .glass-panel {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+}
+
+body.light-mode .glass-panel:hover {
+  border-color: #d97706 !important;
+  box-shadow: 0 12px 30px -4px rgba(180, 83, 9, 0.12) !important;
+}
+
+/* Section alternating backgrounds */
+body.light-mode [class*="bg-slate-950"] {
+  background-color: #f1f5f9 !important;
+}
+
+/* Cards & containers inside sections */
+body.light-mode [class*="bg-slate-900"] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Specialized badge backgrounds in cards */
+body.light-mode [class*="bg-teal-950"] {
+  background-color: #f0fdfa !important;
+  border-color: #99f6e4 !important;
+}
+
+body.light-mode [class*="bg-amber-500/10"],
+body.light-mode [class*="bg-amber-500/20"] {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+}
+
+body.light-mode [class*="bg-teal-500/10"],
+body.light-mode [class*="bg-teal-500/20"] {
+  background-color: #f0fdfa !important;
+  border-color: #99f6e4 !important;
+}
+
+/* Section borders & lines */
+body.light-mode [class*="border-slate-800"],
+body.light-mode [class*="border-slate-700"],
+body.light-mode [class*="border-slate-900"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* 3. Badges & Tags */
+body.light-mode .gold-badge {
+  background-color: #fef3c7 !important;
+  border-color: #f59e0b !important;
+  color: #92400e !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .teal-badge {
+  background-color: #ccfbf1 !important;
+  border-color: #14b8a6 !important;
+  color: #0f766e !important;
+  font-weight: 700 !important;
+}
+
+/* 4. Action Buttons & Filters */
+body.light-mode .btn-gold {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25) !important;
+}
+body.light-mode .btn-gold:hover {
+  background: linear-gradient(135deg, #b45309 0%, #92400e 100%) !important;
+  box-shadow: 0 6px 20px rgba(180, 83, 9, 0.35) !important;
+}
+
+body.light-mode .btn-outline-gold {
+  background-color: #ffffff !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+body.light-mode .btn-outline-gold:hover {
+  background-color: #fef3c7 !important;
+  border-color: #b45309 !important;
+  color: #78350f !important;
+}
+
+body.light-mode .event-filter-btn:not(.bg-amber-500),
+body.light-mode .leadership-filter-btn:not(.bg-amber-500) {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+body.light-mode .event-filter-btn:not(.bg-amber-500):hover,
+body.light-mode .leadership-filter-btn:not(.bg-amber-500):hover {
+  background-color: #fef3c7 !important;
+  border-color: #b45309 !important;
+  color: #92400e !important;
+}
+
+body.light-mode .event-filter-btn.bg-amber-500,
+body.light-mode .leadership-filter-btn.bg-amber-500 {
+  background-color: #b45309 !important;
+  border-color: #92400e !important;
+  color: #ffffff !important;
+}
+
+/* 5. Header, Nav Links, & Controls */
+body.light-mode #main-header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+body.light-mode #main-header .font-cinzel {
+  color: #0f172a !important;
+}
+body.light-mode #main-header .font-bengali {
   color: #b45309 !important;
 }
 
-body.light-mode .text-teal-300,
-body.light-mode .text-teal-400 {
-  color: #0f766e !important;
+body.light-mode .nav-link {
+  color: #334155 !important;
+  font-weight: 600;
+}
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+  color: #b45309 !important;
+  background-color: rgba(180, 83, 9, 0.08) !important;
+}
+body.light-mode .nav-link::after {
+  background: #b45309 !important;
 }
 
+body.light-mode .theme-toggle-btn {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+body.light-mode .theme-toggle-btn:hover {
+  border-color: #b45309 !important;
+  background-color: #fef3c7 !important;
+}
+
+body.light-mode .lang-btn.bg-amber-500 {
+  background-color: #b45309 !important;
+  color: #ffffff !important;
+}
+body.light-mode .lang-btn:not(.bg-amber-500) {
+  color: #64748b !important;
+}
+
+body.light-mode #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+body.light-mode .mobile-nav-link {
+  color: #1e293b !important;
+}
+body.light-mode .mobile-nav-link:hover {
+  color: #b45309 !important;
+}
+
+/* 6. Form Inputs & Selects */
 body.light-mode input,
 body.light-mode select,
 body.light-mode textarea {
   background-color: #ffffff !important;
   color: #0f172a !important;
   border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
+body.light-mode input:focus,
+body.light-mode select:focus,
+body.light-mode textarea:focus {
+  border-color: #b45309 !important;
+  box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15) !important;
+  outline: none !important;
+}
+body.light-mode label {
+  color: #334155 !important;
+  font-weight: 600;
+}
 body.light-mode input::placeholder,
 body.light-mode textarea::placeholder {
   color: #94a3b8 !important;
 }
 
-body.light-mode #main-header {
-  background: var(--header-bg) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
-}
-
+/* 7. Footer & Quotes */
 body.light-mode footer {
   background-color: #f1f5f9 !important;
-  border-top-color: rgba(0, 0, 0, 0.08) !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+body.light-mode footer [class*="border-t"] {
+  border-color: #e2e8f0 !important;
+}
+body.light-mode .quote-box {
+  border-left-color: #b45309 !important;
+}
+body.light-mode .quote-box p {
+  color: #92400e !important;
+}
+
+/* 8. Floating Atmosphere Audio Widget */
+body.light-mode #audio-widget {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+body.light-mode #audio-widget #audio-status-text {
+  color: #92400e !important;
+  font-weight: 600;
+}
+body.light-mode #audio-widget .sound-bar {
+  background-color: #b45309 !important;
+}
+body.light-mode #audio-widget svg {
+  color: #b45309 !important;
+}
+
+/* 9. Lightbox Modal Text Clarity (overlay stays cinema dark) */
+body.light-mode #lightbox-modal {
+  background-color: rgba(4, 8, 18, 0.94) !important;
+}
+body.light-mode #lightbox-title {
+  color: #fef08a !important;
+}
+body.light-mode #lightbox-venue {
+  color: #2dd4bf !important;
+}
+body.light-mode #lightbox-desc {
+  color: #e2e8f0 !important;
+}
+
+/* 10. Particles subtle opacity in light mode */
+body.light-mode #particles-canvas {
+  opacity: 0.28 !important;
+}
+
+/* 11. Custom Luxury Cursor in Light Mode */
+body.light-mode .custom-cursor-dot {
+  background-color: #b45309 !important;
+}
+body.light-mode .custom-cursor-outline {
+  border-color: #b45309 !important;
+}
+
+/* 12. Islamic Geometry Dividers & Symbols */
+body.light-mode .islamic-divider svg {
+  color: #b45309 !important;
+}
+body.light-mode .islamic-divider::before,
+body.light-mode .islamic-divider::after {
+  background: linear-gradient(90deg, transparent, #b45309, transparent) !important;
+}
+
+/* 13. Leadership Avatar Icon Chip in Light Mode */
+body.light-mode .w-11.rounded-full.bg-slate-900,
+body.light-mode .w-12.rounded-full.bg-slate-900 {
+  background-color: #fef3c7 !important;
+  border-color: #f59e0b !important;
+  color: #92400e !important;
+}
+
+/* 14. Fullscreen Motion Preloader in Light Mode */
+body.light-mode #preloader {
+  background-color: #ffffff !important;
+}
+body.light-mode .preloader-circle-bg {
+  stroke: rgba(15, 23, 42, 0.08) !important;
+}
+body.light-mode .preloader-counter {
+  color: #0f172a !important;
+}
+body.light-mode .preloader-quote-text {
+  color: #334155 !important;
+}
+body.light-mode .preloader-quote-author {
+  color: #b45309 !important;
+}
+
+/* 15. Light Mode Scrollbar & Text Selection */
+body.light-mode::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+body.light-mode::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+body.light-mode::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+body.light-mode ::selection {
+  background-color: #fde68a !important;
+  color: #78350f !important;
 }
 
 /* ==========================================================================
