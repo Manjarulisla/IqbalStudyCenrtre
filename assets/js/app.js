@@ -124,6 +124,16 @@ function applyLanguage(lang) {
     }
   });
 
+  // Trusted dictionary entries that carry inline markup (<em>, <br>)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key]) {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  document.documentElement.lang = lang === 'bn' ? 'bn' : 'en';
+
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key]) {
@@ -355,7 +365,7 @@ function renderEventsList() {
             </div>
             <div class="opacity-0 group-hover:opacity-100 transition-opacity bg-amber-500 text-black px-2.5 py-1 rounded-full text-xs font-bold font-cinzel flex items-center gap-1">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-              ${isBn ? 'ছবি বড় করুন' : 'Expand'}
+              ${isBn ? 'ছবিটি খুলুন' : 'Expand'}
             </div>
           </div>
         </div>
@@ -381,7 +391,7 @@ function renderEventsList() {
           ${speakers && speakers.length > 0 ? `
             <div class="border-t border-slate-800 pt-3.5 mt-auto">
               <div class="text-[11px] uppercase tracking-wider text-amber-400 font-bold mb-2">
-                ${isBn ? 'বিশিষ্ট বক্তা ও আলোচকবৃন্দ:' : 'Distinguished Speakers / Key Participants:'}
+                ${isBn ? 'যাঁদের প্রজ্ঞায় সমৃদ্ধ হলো আসর:' : 'Distinguished Speakers / Key Participants:'}
               </div>
               <ul class="text-xs text-slate-300 space-y-1 font-sans">
                 ${speakers.map(spk => `<li class="flex items-start gap-1.5"><span class="text-amber-500">✦</span><span>${spk}</span></li>`).join('')}
@@ -393,7 +403,7 @@ function renderEventsList() {
           ${awards && awards.length > 0 ? `
             <div class="border-t border-slate-800 pt-3 mt-3.5">
               <div class="text-[11px] uppercase tracking-wider text-teal-400 font-bold mb-2">
-                ${isBn ? 'পাঠ-প্রতিক্রিয়া পুরস্কার প্রাপ্ত শিক্ষার্থী:' : 'Reading Response Prize Laureates:'}
+                ${isBn ? 'পাঠ-প্রতিক্রিয়া পুরস্কারে সম্মানিত শিক্ষার্থী:' : 'Reading Response Prize Laureates:'}
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 ${awards.map(aw => `
@@ -497,7 +507,7 @@ function renderLeadershipList() {
   if (list.length === 0) {
     container.innerHTML = `
       <div class="col-span-full text-center py-12 text-slate-400">
-        <p class="text-base">${isBn ? 'কোনো সদস্য খুঁজে পাওয়া যায়নি।' : 'No members found matching your search.'}</p>
+        <p class="text-base">${isBn ? 'আপনার খোঁজের সঙ্গে মেলে এমন কোনো সদস্য পাওয়া গেল না।' : 'No members found matching your search.'}</p>
       </div>
     `;
     return;
@@ -542,7 +552,7 @@ function initJoinForm() {
     const uni = document.getElementById('join-university')?.value || 'University';
 
     alert(isBn 
-      ? `অভিনন্দন ${name}! ইকবাল চর্চা কেন্দ্রে আপনার আবেদন সফলভাবে গৃহীত হয়েছে। আমাদের কেন্দ্রীয় সমন্বয়ক শিগগিরই আপনার সাথে যোগাযোগ করবেন।`
+      ? `অভিনন্দন, ${name}! ইকবাল চর্চা কেন্দ্রে আপনার আবেদন পৌঁছেছে। খুব শিগগিরই আমাদের ক্যাম্পাস সমন্বয়ক হোয়াটসঅ্যাপে আপনার সঙ্গে যোগাযোগ করবেন।`
       : `Congratulations ${name} (${uni})! Your membership application has been received. Our campus coordinators will contact you soon via WhatsApp.`
     );
     form.reset();

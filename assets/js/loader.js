@@ -41,8 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  const iqbalQuotesBn = [
+    {
+      text: "আপন খুদিকে এমন উচ্চে তোলো, যেন প্রতিটি নিয়তি লেখার আগে স্বয়ং খোদা বান্দাকে শুধান — বলো, কী তোমার অভিলাষ?",
+      author: "আল্লামা ইকবাল — বাল-ই-জিবরিল"
+    },
+    {
+      text: "ঢেউ বেঁচে থাকে সাগরের বুকে; সাগরের বাইরে সে শূন্য। ব্যক্তির অস্তিত্বও সমষ্টির বন্ধনে।",
+      author: "আল্লামা ইকবাল — রুমুজ-ই-বেখুদি"
+    }
+  ];
+
   if (quoteEl && quoteAuthorEl) {
-    const quote = iqbalQuotes[Math.floor(Math.random() * iqbalQuotes.length)];
+    const pool = localStorage.getItem('isc_lang') === 'bn' ? iqbalQuotesBn : iqbalQuotes;
+    const quote = pool[Math.floor(Math.random() * pool.length)];
     quoteEl.textContent = `“${quote.text}”`;
     quoteAuthorEl.textContent = quote.author;
     quoteEl.classList.add('active');
