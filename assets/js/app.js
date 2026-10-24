@@ -35,19 +35,51 @@ function initTheme() {
   const themeBtns = document.querySelectorAll('.theme-toggle-btn');
   themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      if (document.body.classList.contains('light-mode')) {
-        document.body.classList.remove('light-mode');
-        document.documentElement.classList.remove('light-mode');
-        window.currentTheme = 'dark';
-      } else {
-        document.body.classList.add('light-mode');
-        document.documentElement.classList.add('light-mode');
-        window.currentTheme = 'light';
-      }
-      localStorage.setItem('isc_theme', window.currentTheme);
-      updateThemeIcons();
+      const rect = btn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      runViewTransition('vt-theme', toggleTheme, transition => {
+        const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+        transition.ready.then(() => {
+          document.documentElement.animate(
+            { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+            { duration: 900, easing: 'cubic-bezier(0.76, 0, 0.24, 1)', pseudoElement: '::view-transition-new(root)' }
+          );
+        });
+      });
     });
   });
+
+  function toggleTheme() {
+    if (document.body.classList.contains('light-mode')) {
+      document.body.classList.remove('light-mode');
+      document.documentElement.classList.remove('light-mode');
+      window.currentTheme = 'dark';
+    } else {
+      document.body.classList.add('light-mode');
+      document.documentElement.classList.add('light-mode');
+      window.currentTheme = 'light';
+    }
+    localStorage.setItem('isc_theme', window.currentTheme);
+    updateThemeIcons();
+  }
+}
+
+/**
+ * Runs a DOM update inside a View Transition when the browser supports it.
+ * `flag` is a class put on <html> for the duration so CSS can pick the animation.
+ */
+function runViewTransition(flag, update, onStart) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!document.startViewTransition || reduce) {
+    update();
+    return;
+  }
+  const root = document.documentElement;
+  root.classList.add(flag);
+  const transition = document.startViewTransition(update);
+  if (onStart) onStart(transition);
+  transition.finished.finally(() => root.classList.remove(flag));
 }
 
 function updateThemeIcons() {
@@ -75,7 +107,7 @@ function initLanguage() {
       if (targetLang && targetLang !== window.currentLang) {
         window.currentLang = targetLang;
         localStorage.setItem('isc_lang', targetLang);
-        applyLanguage(targetLang);
+        runViewTransition('vt-lang', () => applyLanguage(targetLang));
       }
     });
   });
@@ -123,30 +155,48 @@ function initFastCursor() {
 
   let mouseX = -100, mouseY = -100;
   let outlineX = -100, outlineY = -100;
+  let scale = 1, targetScale = 1, pressed = false;
+
+  const label = document.createElement('span');
+  label.className = 'cursor-label';
+  label.textContent = 'VIEW';
+  outline.appendChild(label);
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     dot.style.transform = `translate3d(${mouseX - 3.5}px, ${mouseY - 3.5}px, 0)`;
+    document.body.classList.remove('cursor-hidden');
   }, { passive: true });
 
+  document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hidden'));
+  window.addEventListener('mousedown', () => { pressed = true; });
+  window.addEventListener('mouseup', () => { pressed = false; });
+
   function renderCursor() {
-    outlineX += (mouseX - outlineX) * 0.2;
-    outlineY += (mouseY - outlineY) * 0.2;
-    outline.style.transform = `translate3d(${outlineX - 16}px, ${outlineY - 16}px, 0)`;
+    outlineX += (mouseX - outlineX) * 0.18;
+    outlineY += (mouseY - outlineY) * 0.18;
+    const goal = (pressed ? 0.75 : 1) * targetScale;
+    scale += (goal - scale) * 0.2;
+    outline.style.transform = `translate3d(${outlineX - 16}px, ${outlineY - 16}px, 0) scale(${scale.toFixed(3)})`;
     requestAnimationFrame(renderCursor);
   }
   requestAnimationFrame(renderCursor);
 
   document.addEventListener('mouseover', (e) => {
-    if (e.target.closest('a, button, input, select, textarea, .cursor-pointer')) {
+    if (e.target.closest('.luxury-image-frame')) {
+      outline.classList.add('is-view');
+      targetScale = 2.6;
+    } else if (e.target.closest('a, button, input, select, textarea, .cursor-pointer')) {
       outline.classList.add('hovered');
+      targetScale = 1.6;
     }
   }, { passive: true });
 
   document.addEventListener('mouseout', (e) => {
-    if (e.target.closest('a, button, input, select, textarea, .cursor-pointer')) {
-      outline.classList.remove('hovered');
+    if (e.target.closest('a, button, input, select, textarea, .cursor-pointer, .luxury-image-frame')) {
+      outline.classList.remove('hovered', 'is-view');
+      targetScale = 1;
     }
   }, { passive: true });
 }
@@ -174,14 +224,30 @@ function initMobileMenu() {
 
   if (!toggleBtn || !mobileMenu) return;
 
+  Array.from(mobileMenu.children).forEach((child, i) => child.style.setProperty('--i', i));
+  let closeTimer = null;
+
+  function openMenu() {
+    clearTimeout(closeTimer);
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.getBoundingClientRect();
+    mobileMenu.classList.add('menu-open');
+    toggleBtn.classList.add('is-open');
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('menu-open');
+    toggleBtn.classList.remove('is-open');
+    closeTimer = setTimeout(() => mobileMenu.classList.add('hidden'), 550);
+  }
+
   toggleBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    if (mobileMenu.classList.contains('menu-open')) closeMenu();
+    else openMenu();
   });
 
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-    });
+    link.addEventListener('click', closeMenu);
   });
 }
 
@@ -198,18 +264,25 @@ function initLightbox() {
 
   if (!overlay || !imgEl) return;
 
+  imgEl.addEventListener('load', () => imgEl.classList.remove('is-loading'));
+  overlay.setAttribute('data-lenis-prevent', '');
+
   window.openLightbox = function(imgSrc, title, venue, desc) {
+    imgEl.classList.add('is-loading');
     imgEl.src = imgSrc;
+    if (imgEl.complete) requestAnimationFrame(() => imgEl.classList.remove('is-loading'));
     if (titleEl) titleEl.textContent = title || '';
     if (venueEl) venueEl.textContent = venue || '';
     if (descEl) descEl.textContent = desc || '';
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (window.ISC_LENIS) window.ISC_LENIS.stop();
   };
 
   function closeLightbox() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    if (window.ISC_LENIS) window.ISC_LENIS.start();
   }
 
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
@@ -485,7 +558,8 @@ function initViewRouter() {
     const hash = window.location.hash || '#home';
     const targetSection = document.querySelector(hash);
     if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      if (window.iscScrollTo) window.iscScrollTo(targetSection);
+      else targetSection.scrollIntoView({ behavior: 'smooth' });
     }
     navLinks.forEach(link => {
       if (link.getAttribute('href') === hash) link.classList.add('active');
@@ -493,7 +567,10 @@ function initViewRouter() {
     });
   }
   window.addEventListener('hashchange', handleHash);
-  if (window.location.hash) setTimeout(handleHash, 300);
+  if (window.location.hash) {
+    if (window.ISC_READY) setTimeout(handleHash, 300);
+    else window.addEventListener('isc:ready', () => setTimeout(handleHash, 200), { once: true });
+  }
 }
 
 function getInitials(name) {

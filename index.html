@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,10 +42,22 @@
   <!-- Custom Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
   <script>
-    if (localStorage.getItem('isc_theme') === 'light') {
-      document.documentElement.classList.add('light-mode');
-    }
+    (function () {
+      var root = document.documentElement;
+      if (localStorage.getItem('isc_theme') === 'light') root.classList.add('light-mode');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion-on');
+      try {
+        if (sessionStorage.getItem('isc_visited')) root.classList.add('isc-return');
+        if (sessionStorage.getItem('isc_transition')) {
+          root.classList.add('isc-arrive');
+          sessionStorage.removeItem('isc_transition');
+        }
+      } catch (e) {}
+      // Never leave content hidden if the motion engine fails to load
+      setTimeout(function () { if (!window.ISC_MOTION) root.classList.remove('motion-on', 'isc-arrive'); }, 4000);
+    })();
   </script>
 </head>
 <body class="bg-[#040812] text-slate-100 overflow-x-hidden selection:bg-amber-500 selection:text-black">
@@ -869,6 +881,8 @@
   <script src="assets/js/particles.js"></script>
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/vendor/lenis.min.js"></script>
+  <script src="assets/js/motion.js"></script>
 
 </body>
 </html>
