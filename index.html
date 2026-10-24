@@ -48,15 +48,8 @@
       var root = document.documentElement;
       if (localStorage.getItem('isc_theme') === 'light') root.classList.add('light-mode');
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion-on');
-      try {
-        if (sessionStorage.getItem('isc_visited')) root.classList.add('isc-return');
-        if (sessionStorage.getItem('isc_transition')) {
-          root.classList.add('isc-arrive');
-          sessionStorage.removeItem('isc_transition');
-        }
-      } catch (e) {}
       // Never leave content hidden if the motion engine fails to load
-      setTimeout(function () { if (!window.ISC_MOTION) root.classList.remove('motion-on', 'isc-arrive'); }, 4000);
+      setTimeout(function () { if (!window.ISC_MOTION) root.classList.remove('motion-on'); }, 4000);
     })();
   </script>
 </head>

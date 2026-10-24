@@ -92,7 +92,6 @@ window.ISC_MOTION = true;
     document.body.appendChild(curtain);
     curtain.getBoundingClientRect();
     curtain.classList.add('is-active');
-    try { sessionStorage.setItem('isc_transition', '1'); } catch (err) {}
     setTimeout(() => { window.location.href = href; }, 780);
   }
 
