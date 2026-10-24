@@ -32,24 +32,45 @@ window.ISC_MOTION = true;
     requestAnimationFrame(raf);
   }
 
-  // Keeps the header pinned while a nav click glides the page
-  let gliding = false;
-  let glideTimer = null;
-
   window.iscScrollTo = function (target, immediate) {
     const el = typeof target === 'string' ? document.querySelector(target) : target;
     if (!el) return;
-    gliding = true;
-    clearTimeout(glideTimer);
-    const done = () => { glideTimer = setTimeout(() => { gliding = false; }, 120); };
     if (lenis) {
-      lenis.scrollTo(el, { offset: -72, duration: immediate ? 0 : 1.6, immediate: !!immediate, onComplete: done });
+      lenis.scrollTo(el, { offset: -72, duration: immediate ? 0 : 1.6, immediate: !!immediate });
     } else {
       const top = el.getBoundingClientRect().top + window.scrollY - 72;
       window.scrollTo({ top, behavior: immediate || reduceMotion ? 'auto' : 'smooth' });
-      glideTimer = setTimeout(() => { gliding = false; }, 1200);
     }
   };
+
+  /* ==========================================================================
+     1b. LIVE VIDEO BACKGROUND — keep it playing for the whole visit
+     ========================================================================== */
+  const bgVideo = document.querySelector('.bg-video');
+  if (bgVideo) {
+    bgVideo.muted = true;
+    const markPlaying = () => bgVideo.classList.add('is-playing');
+    const play = () => {
+      if (reduceMotion || !bgVideo.paused) return;
+      const attempt = bgVideo.play();
+      if (attempt && attempt.catch) attempt.catch(() => {});
+    };
+
+    if (reduceMotion) {
+      bgVideo.removeAttribute('autoplay');
+      bgVideo.pause();
+      markPlaying();
+    } else {
+      bgVideo.addEventListener('playing', markPlaying);
+      // Some browsers stall or pause background media; nudge it back on
+      bgVideo.addEventListener('pause', () => { if (!document.hidden) setTimeout(play, 300); });
+      bgVideo.addEventListener('ended', () => { bgVideo.currentTime = 0; play(); });
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) play(); });
+      ['pointerdown', 'touchstart', 'keydown'].forEach(evt =>
+        window.addEventListener(evt, play, { passive: true }));
+      play();
+    }
+  }
 
   /* ==========================================================================
      2. PAGE TRANSITIONS (departure curtain; arrival is pure CSS)
@@ -324,29 +345,20 @@ window.ISC_MOTION = true;
   }
 
   /* ==========================================================================
-     5. SCROLL-LINKED CHROME: PROGRESS BAR, SMART HEADER, PARALLAX, SCROLL-SPY
+     5. SCROLL-LINKED CHROME: PROGRESS BAR, PARALLAX, SCROLL-SPY
      ========================================================================== */
   const progressBar = document.createElement('div');
   progressBar.className = 'scroll-progress';
   document.body.appendChild(progressBar);
 
-  const header = document.getElementById('main-header');
   const heroVisual = document.querySelector('#home .lg\\:col-span-5 > div');
   const heroGlow = document.querySelector('#home > .absolute');
-  let lastY = window.scrollY;
 
   function onScroll() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
 
-    if (header) {
-      const menuOpen = document.getElementById('mobile-menu')?.classList.contains('menu-open');
-      if (gliding) header.classList.remove('header-hidden');
-      else if (y > 240 && y > lastY + 4 && !menuOpen) header.classList.add('header-hidden');
-      else if (y < lastY - 4 || y < 240) header.classList.remove('header-hidden');
-    }
-    lastY = y;
 
     // Translated items at the very end of the page can sit below the observer's edge
     if (ready && max - y < 8) {
