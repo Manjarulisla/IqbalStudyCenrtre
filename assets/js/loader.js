@@ -1,12 +1,10 @@
 /**
  * IQBAL STUDY CENTRE (ISC) — CINEMATIC PRELOADER CONTROLLER
- * Full sequence on the first visit of a session; returning page loads
- * skip straight to the arrival curtain. Fires `isc:ready` when the
- * stage is clear so motion.js can start the entrance choreography.
+ * Plays the full loading sequence on every page load. Fires `isc:ready`
+ * when the stage is clear so motion.js can start the entrance choreography.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const root = document.documentElement;
   const preloader = document.getElementById('preloader');
   const counterText = document.getElementById('preloader-counter-text');
   const circleBar = document.querySelector('.preloader-circle-bar');
@@ -18,15 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.dispatchEvent(new Event('isc:ready'));
   }
 
-  function markVisited() {
-    try { sessionStorage.setItem('isc_visited', '1'); } catch (err) {}
-  }
-
-  // Returning within the session: the preloader is hidden by CSS
-  if (!preloader || root.classList.contains('isc-return')) {
-    if (preloader) preloader.style.display = 'none';
-    markVisited();
-    setTimeout(signalReady, root.classList.contains('isc-arrive') ? 420 : 60);
+  if (!preloader) {
+    setTimeout(signalReady, 60);
     return;
   }
 
@@ -97,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function dismissPreloader() {
     preloader.classList.add('loaded');
     document.body.classList.remove('overflow-hidden');
-    markVisited();
 
     // Let the curtain clear the fold before the entrance choreography begins
     setTimeout(signalReady, 380);

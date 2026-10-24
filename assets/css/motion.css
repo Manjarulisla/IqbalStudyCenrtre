@@ -74,34 +74,6 @@ body.light-mode :is(h1, h2, h3, h4, p, li, label):not(.shimmer-text) {
    1. PAGE TRANSITION CURTAINS
    ========================================================================== */
 
-/* Returning visitors skip the full preloader */
-html.isc-return #preloader { display: none !important; }
-
-/* Arrival curtain: painted before the first frame, lifts away on load */
-html.isc-arrive::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 2147483000;
-  pointer-events: none;
-  background:
-    url('../images/isc-emblem.png') center / 84px no-repeat,
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.14), transparent 45%),
-    #03060d;
-  animation: curtainLift 1s var(--ease-in-out-quart) 0.12s both;
-}
-html.light-mode.isc-arrive::after {
-  background:
-    url('../images/isc-emblem.png') center / 84px no-repeat,
-    radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.12), transparent 45%),
-    #fdfbf6;
-}
-
-@keyframes curtainLift {
-  from { clip-path: inset(0 0 0 0); }
-  to { clip-path: inset(0 0 100% 0); }
-}
-
 /* Departure curtain, injected by motion.js */
 .page-curtain {
   position: fixed;
@@ -569,5 +541,4 @@ html.vt-lang::view-transition-new(root) {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  html.isc-arrive::after { display: none; }
 }
